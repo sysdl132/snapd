@@ -436,14 +436,6 @@ func UbuntuArchToScmpArch(ubuntuArch string) seccomp.ScmpArch {
 		return seccomp.ArchARM
 	case "i386":
 		return seccomp.ArchX86
-	case "powerpc":
-		return seccomp.ArchPPC
-	case "ppc64":
-		return seccomp.ArchPPC64
-	case "ppc64el":
-		return seccomp.ArchPPC64LE
-	case "s390x":
-		return seccomp.ArchS390X
 	}
 	panic(fmt.Sprintf("cannot map ubuntu arch %q to a seccomp arch", ubuntuArch))
 }
@@ -593,8 +585,6 @@ func addSecondaryArches(secFilter *seccomp.ScmpFilter) error {
 			compatArch = seccomp.ArchX86
 		case "arm64":
 			compatArch = seccomp.ArchARM
-		case "ppc64":
-			compatArch = seccomp.ArchPPC
 		}
 	} else {
 		// less common case: kernel and userspace have different archs
