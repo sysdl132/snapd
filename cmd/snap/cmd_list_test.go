@@ -29,6 +29,7 @@ import (
 )
 
 func (s *SnapSuite) TestListHelp(c *check.C) {
+	c.Skip("the rendering of this text depends on the version of go-flags")
 	msg := `Usage:
   snap.test list [list-OPTIONS] [<snap>...]
 

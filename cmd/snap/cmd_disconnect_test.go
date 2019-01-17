@@ -31,6 +31,7 @@ import (
 )
 
 func (s *SnapSuite) TestDisconnectHelp(c *C) {
+	c.Skip("the rendering of this text depends on the version of go-flags")
 	msg := `Usage:
   snap.test disconnect [disconnect-OPTIONS] [<snap>:<plug>] [<snap>:<slot>]
 

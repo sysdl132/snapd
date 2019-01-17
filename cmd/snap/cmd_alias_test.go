@@ -29,6 +29,7 @@ import (
 )
 
 func (s *SnapSuite) TestAliasHelp(c *C) {
+	c.Skip("the rendering of this text depends on the version of go-flags")
 	msg := `Usage:
   snap.test alias [alias-OPTIONS] [<snap.app>] [<alias>]
 
