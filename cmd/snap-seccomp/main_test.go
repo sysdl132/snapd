@@ -185,6 +185,14 @@ func (s *snapSeccompSuite) SetUpSuite(c *C) {
 	// Ideally we would build for ppc64el->powerpc and arm64->armhf but
 	// it seems tricky to find the right gcc-multilib for this.
 	if arch.UbuntuArchitecture() == "amd64" && s.canCheckCompatArch {
+		// This test fails on Debian amd64
+		// cannot build multi-lib syscall runner: exit status 1
+		// In file included from /usr/include/errno.h:25,
+		//                  from /tmp/check-3806730340354206876/1/seccomp_syscall_runner.c:3:
+		// /usr/include/features.h:424:12: fatal error: sys/cdefs.h: No such file or directory
+		//  #  include <sys/cdefs.h>
+		//             ^~~~~~~~~~~~~
+		c.Skip(`This test fails to build on Debian amd64`)
 		cmd = exec.Command(cmd.Args[0], cmd.Args[1:]...)
 		cmd.Args = append(cmd.Args, "-m32")
 		for i, k := range cmd.Args {
